@@ -33,7 +33,7 @@ const taskManager = () => {
     // for example,
     const inputText = $todoInput.value.trim();
     if (inputText == "") {
-      showFeeback();
+      showFeeback("Please add todo text!");
       return;
     }
     clearFeedback();
