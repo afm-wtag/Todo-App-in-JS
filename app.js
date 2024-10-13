@@ -25,9 +25,11 @@ const taskManager = () => {
     const editButton = createButton("Edit", () =>
       onEditTodo($errorMsg, $todoText, $editText, index)
     );
+    const deleteButton = createButton("Delete", () => onDeleteTodo(index));
     $li.appendChild($todoText);
     $li.appendChild($editText);
     $li.appendChild(editButton);
+    $li.appendChild(deleteButton);
     $li.appendChild($errorMsg);
     return $li;
   }
@@ -78,6 +80,10 @@ const taskManager = () => {
       }
     }
   }
+  function onDeleteTodo(index) {
+    todos.splice(index, 1);
+    renderTodos();
+  }
   function showFeeback(feedbackBlock, msg) {
     feedbackBlock.innerText = msg;
     feedbackBlock.style.color = "red";
@@ -90,4 +96,5 @@ const taskManager = () => {
   }
   $addTodoButton.addEventListener("click", onAddTodo);
 };
+
 document.addEventListener("DOMContentLoaded", taskManager);
