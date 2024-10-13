@@ -1,7 +1,7 @@
 const taskManager = () => {
-  const inputTodo = document.getElementById("inputTodo");
-  const addTodoButton = document.getElementById("addTodoButton");
-  const listTodo = document.getElementById("listTodo");
+  const $todoInput = document.getElementById("inputTodo");
+  const $addTodoButton = document.getElementById("addTodoButton");
+  const $todoList = document.getElementById("listTodo");
   const addTodo = () => {
     const inputText = inputTodo.value.trim();
     if (inputText == "") {
