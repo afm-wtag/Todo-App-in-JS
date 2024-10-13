@@ -20,8 +20,8 @@ const taskManager = () => {
     $li.appendChild($todoText);
     return $li;
   }
-  function showFeeback() {
-    $feedbackMessage.innerText = "Please Enter a valid Todo item";
+  function showFeeback(content) {
+    $feedbackMessage.innerText = content;
     $feedbackMessage.style.color = "red";
     $feedbackMessage.style.fontSize = "12px";
   }
