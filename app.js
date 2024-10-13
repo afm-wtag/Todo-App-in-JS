@@ -5,7 +5,6 @@ const taskManager = () => {
   const $todoList = document.getElementById("listTodo");
   const $feedbackMessage = document.getElementById("feedbackMessage");
   function renderTodos() {
-    // iterate over the todos list, create specific todos, and insert them in the DOM
     $todoList.innerHTML = "";
     todos.forEach((todo) => {
       const todoElement = createTodo(todo);
