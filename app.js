@@ -1,6 +1,8 @@
+import { showFeedback, clearFeedback } from "./utility.js";
+
 const taskManager = () => {
   let todos = [];
-  
+
   const $todoInput = document.getElementById("inputTodo");
   const $addTodoButton = document.getElementById("addTodoButton");
   const $todoList = document.getElementById("listTodo");
@@ -24,36 +26,28 @@ const taskManager = () => {
     return $li;
   }
 
-  function showFeeback(content) {
-    $feedbackMessage.innerText = content;
-    $feedbackMessage.style.color = "red";
-    $feedbackMessage.style.fontSize = "12px";
-  }
-
-  function clearFeedback() {
-    $feedbackMessage.innerText = "";
-  }
-  
   function onAddTodo() {
     const inputText = $todoInput.value.trim();
 
     if (inputText == "") {
-      showFeeback("Please add todo text!");
+      showFeedback($feedbackMessage, "Please add todo text!");
       return;
     }
 
-    clearFeedback();
-    
+    clearFeedback($feedbackMessage);
+
     const todo = {
       title: $todoInput.value,
       createdAt: Date.now(),
     };
     todos.push(todo);
-    
+
     renderTodos();
-    
+
     $todoInput.value = "";
   }
+
   $addTodoButton.addEventListener("click", onAddTodo);
 };
+
 document.addEventListener("DOMContentLoaded", taskManager);
