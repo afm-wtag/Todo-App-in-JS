@@ -1,5 +1,6 @@
 const taskManager = () => {
   let todos = [];
+  
   const $todoInput = document.getElementById("inputTodo");
   const $addTodoButton = document.getElementById("addTodoButton");
   const $todoList = document.getElementById("listTodo");
