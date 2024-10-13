@@ -41,7 +41,6 @@ const taskManager = () => {
     const todo = {
       title: $todoInput.value,
       createdAt: Date.now(),
-      //... other options might be added in the future
     };
     todos.push(todo);
     
