@@ -37,6 +37,7 @@ const taskManager = () => {
       return;
     }
     clearFeedback();
+    
     const todo = {
       title: $todoInput.value,
       createdAt: Date.now(),
