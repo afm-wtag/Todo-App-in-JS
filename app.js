@@ -14,11 +14,11 @@ const taskManager = () => {
   }
   function createTodo(todo) {
     // responsible for creating a todo element based on the todo object
-    const li = document.createElement("li");
-    const todoText = document.createElement("span");
-    todoText.textContent = todo.title;
-    li.appendChild(todoText);
-    return li;
+    const $li = document.createElement("li");
+    const $todoText = document.createElement("span");
+    $todoText.textContent = todo.title;
+    $li.appendChild($todoText);
+    return $li;
   }
   function showFeeback() {
     $feedbackMessage.innerText = "Please Enter a valid Todo item";
