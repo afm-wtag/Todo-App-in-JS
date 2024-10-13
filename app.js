@@ -10,6 +10,7 @@ const taskManager = () => {
 
   function renderTodos() {
     $todoList.innerHTML = "";
+
     todos.forEach((todo, index) => {
       const todoElement = createTodo(todo, index);
       $todoList.appendChild(todoElement);
@@ -41,6 +42,7 @@ const taskManager = () => {
 
   const createButton = (text, onClick) => {
     const $button = document.createElement("button");
+    
     $button.innerText = text;
     $button.onclick = onClick;
     return $button;
