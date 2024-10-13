@@ -43,7 +43,9 @@ const taskManager = () => {
       //... other options might be added in the future
     };
     todos.push(todo);
+    
     renderTodos();
+    
     $todoInput.value = "";
   }
   $addTodoButton.addEventListener("click", onAddTodo);
