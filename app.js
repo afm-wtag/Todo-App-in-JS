@@ -5,37 +5,43 @@ const taskManager = () => {
   const $addTodoButton = document.getElementById("addTodoButton");
   const $todoList = document.getElementById("listTodo");
   const $feedbackMessage = document.getElementById("feedbackMessage");
+
   function renderTodos() {
     $todoList.innerHTML = "";
+
     todos.forEach((todo) => {
       const todoElement = createTodo(todo);
       $todoList.appendChild(todoElement);
     });
   }
+
   function createTodo(todo) {
-    // responsible for creating a todo element based on the todo object
     const $li = document.createElement("li");
     const $todoText = document.createElement("span");
     $todoText.textContent = todo.title;
+
     $li.appendChild($todoText);
     return $li;
   }
+
   function showFeeback(content) {
     $feedbackMessage.innerText = content;
     $feedbackMessage.style.color = "red";
     $feedbackMessage.style.fontSize = "12px";
   }
+
   function clearFeedback() {
     $feedbackMessage.innerText = "";
   }
+  
   function onAddTodo() {
-    // responsible for delegating the work needed to create a todo object
-    // for example,
     const inputText = $todoInput.value.trim();
+
     if (inputText == "") {
       showFeeback("Please add todo text!");
       return;
     }
+
     clearFeedback();
     
     const todo = {
