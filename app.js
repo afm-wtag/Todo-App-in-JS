@@ -25,7 +25,7 @@ const taskManager = () => {
 
     const $editText = document.createElement("input");
     $editText.value = todo.title;
-    $editText.style.display = todo.isEditing ? "inline" : "none";
+    $editText.style.display = todo.isEditing ? "block" : "none";
 
     const $errorMsg = document.createElement("div");
     $errorMsg.style.display = "none";
