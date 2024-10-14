@@ -33,6 +33,8 @@ const taskManager = () => {
     const editButton = createButton(todo.isEditing ? "Save" : "Edit", () =>
       onEditTodo($errorMsg, $todoText, $editText, index)
     );
+    
+    const deleteButton = createButton("Delete", () => onDeleteTodo(index));
 
     const $checkbox = document.createElement("input");
     $checkbox.type = "checkbox";
@@ -43,6 +45,7 @@ const taskManager = () => {
     $li.appendChild($todoText);
     $li.appendChild($editText);
     $li.appendChild(editButton);
+    $li.appendChild(deleteButton);
     $li.appendChild($errorMsg);
     return $li;
   }
@@ -94,6 +97,11 @@ const taskManager = () => {
     }
 
     todo.isEditing = !todo.isEditing;
+    renderTodos();
+  }
+  
+  function onDeleteTodo(index) {
+    todos.splice(index, 1);
     renderTodos();
   }
 

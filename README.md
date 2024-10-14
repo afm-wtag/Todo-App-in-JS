@@ -4,6 +4,7 @@
 
 1. Add Tasks
 2. Edit Tasks
+3. Delete Tasks
 
 ## User Interface -
 
