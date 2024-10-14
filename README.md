@@ -3,6 +3,7 @@
 ## Features -
 
 1. Add Tasks
+2. Edit Tasks
 
 ## User Interface -
 
