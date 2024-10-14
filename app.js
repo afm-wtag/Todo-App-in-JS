@@ -21,18 +21,25 @@ const taskManager = () => {
     const $li = document.createElement("li");
     const $todoText = document.createElement("span");
     $todoText.textContent = todo.title;
+    $todoText.style.display = todo.isEditing ? "none" : "inline";
 
     const $editText = document.createElement("input");
     $editText.value = todo.title;
-    $editText.style.display = "none";
+    $editText.style.display = todo.isEditing ? "inline" : "none";
 
     const $errorMsg = document.createElement("div");
     $errorMsg.style.display = "none";
 
-    const editButton = createButton("Edit", () =>
+    const editButton = createButton(todo.isEditing ? "Save" : "Edit", () =>
       onEditTodo($errorMsg, $todoText, $editText, index)
     );
 
+    const $checkbox = document.createElement("input");
+    $checkbox.type = "checkbox";
+    $checkbox.checked = todo.isDone;
+    $checkbox.onchange = () => onToggleDone(index);
+
+    $li.appendChild($checkbox);
     $li.appendChild($todoText);
     $li.appendChild($editText);
     $li.appendChild(editButton);
@@ -42,7 +49,7 @@ const taskManager = () => {
 
   const createButton = (text, onClick) => {
     const $button = document.createElement("button");
-    
+
     $button.innerText = text;
     $button.onclick = onClick;
     return $button;
@@ -56,10 +63,12 @@ const taskManager = () => {
       return;
     }
     clearFeedback($feedbackMessage);
+
     const todo = {
       title: $todoInput.value,
       createdAt: Date.now(),
       isEditing: false,
+      isDone: false,
     };
     todos.push(todo);
 
@@ -67,33 +76,30 @@ const taskManager = () => {
 
     $todoInput.value = "";
   }
+
   function onEditTodo($errorMsg, $todoText, $editText, index) {
-    todos[index].isEditing = !todos[index].isEditing;
+    const todo = todos[index];
 
-    if (todos[index].isEditing) {
-      $editText.value = todos[index].title;
-      $editText.style.display = "inline";
-      $todoText.style.display = "none";
-
-      $editText.focus();
-    } else {
+    if (todo.isEditing) {
       const updateText = $editText.value.trim();
 
       if (updateText) {
         clearFeedback($errorMsg);
-
-        $editText.style.display = "none";
-        $todoText.style.display = "inline";
-
-        todos[index].title = updateText;
+        todo.title = updateText;
         $todoText.textContent = updateText;
       } else {
         showFeedback($errorMsg, "Write something!");
-
-        todos[index].isEditing = true;
-        $editText.focus();
+        return;
       }
     }
+
+    todo.isEditing = !todo.isEditing;
+    renderTodos();
+  }
+
+  function onToggleDone(index) {
+    todos[index].isDone = !todos[index].isDone;
+    renderTodos();
   }
 
   $addTodoButton.addEventListener("click", onAddTodo);
